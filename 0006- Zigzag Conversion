@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        vector<string> ans(numRows);
+        int n = 0;
+
+        while (n < s.length()){
+            for (int i = 0 ; n < s.length() && i < numRows; i++){
+                char ch = s[n];
+                ans[i] += ch;
+                n++;
+            }
+
+            for (int i = numRows-2 ; n < s.length() && i >= 1 ; i--){
+                char ch = s[n];
+                ans[i] += ch;
+                n++;
+            }
+        }
+
+        string z;
+        for (int k = 0 ; k < numRows ; k++){
+            z += ans[k];
+        }
+
+        return z;
+    }
+};
