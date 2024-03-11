@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        int i = 0;
+        bool isNeg = false;
+        long long ans = 0;
+
+        while (i < s.length()){
+            if (isalpha(s[i]) != 0){
+                return ans;
+            }
+            if (s[i] == '+' || s[i] == '-'){
+                if(s[i] == '-'){
+                    isNeg = true;
+                }
+                i++;
+                while (isdigit(s[i]) != 0){
+                    ans = (ans*10) + (s[i] - '0');
+                    if (ans >= 2147483647 && isNeg == false)
+                        return 2147483647;
+                    if (ans >= 2147483648 && isNeg == true)
+                        return -2147483648;
+                    i++;
+                }
+                if (isNeg == true)
+                ans = ans * (-1);
+                return ans;
+            }
+            else if (isdigit(s[i]) != 0){
+                while (isdigit(s[i]) != 0){
+                    ans = (ans*10) + (s[i] - '0');
+                    if (ans >= 2147483647 && isNeg == false)
+                        return 2147483647;
+                    if (ans >= 2147483648 && isNeg == true)
+                        return -2147483648;
+                    i++;
+                }
+                if (isNeg == true)
+                ans = ans * (-1);
+                return ans;
+            }
+            if (s[i] != ' ')
+            return ans;
+            i++;
+        }
+        if (isNeg == true)
+        ans = ans * (-1);
+        return ans;
+    }
+};
