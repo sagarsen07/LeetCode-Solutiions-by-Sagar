@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        string ans = "1";
+        if (n <= 1){
+            return ans;
+        }
+
+        for (int j = 2 ; j <= n ; j++){
+            int i = 0;
+            int count = 1;
+            string temp = "";
+            while (i < ans.length()){
+                if(ans[i+1] == ans[i]){
+                    count++;
+                }
+                else if (ans[i+1] != ans[i]){
+                    temp = temp + to_string(count) + ans[i];
+                    count = 1;
+                }
+                i++;
+            }
+            ans = temp;
+        }
+        return ans;
+    }
+};
